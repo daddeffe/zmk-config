@@ -3,7 +3,3 @@ config SHIELD_CRYNE_LEFT
 
 config SHIELD_CRYNE_RIGHT
     def_bool $(shields_list_contains,cryne_right)
-
-config SHIELD_CRYNE
-    def_bool $(shields_list_contains,cryne_left) || $(shields_list_contains,cryne_right)
-    select ZMK_SPLIT

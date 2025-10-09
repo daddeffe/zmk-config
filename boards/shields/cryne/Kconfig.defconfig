@@ -1,10 +1,7 @@
 if SHIELD_CRYNE_LEFT
 
 config ZMK_KEYBOARD_NAME
-    default "Cryne"
-
-config ZMK_SPLIT_ROLE_CENTRAL
-    default y
+    default "Cryne Left"
 
 endif
 
@@ -15,9 +12,4 @@ config ZMK_KEYBOARD_NAME
 
 endif
 
-if SHIELD_CRYNE_LEFT || SHIELD_CRYNE_RIGHT
-
-config ZMK_SPLIT
-    default y
-
-endif
+# Note: ZMK_SPLIT defaults removed - configure in .conf files
