@@ -21,7 +21,7 @@
     mt: mod_tap {
       compatible = "zmk,behavior-hold-tap";
       #binding-cells = <2>;
-      flavor = "tap-preferred";
+      flavor = "balanced";
       tapping-term-ms = <200>;
       bindings = <&kp>, <&kp>;
       display-name = "Mod-Tap";
@@ -40,39 +40,36 @@
 
     default_layer {
       display-name = "Default Layer";
-      // FULL LAYOUT - USB MODE
-      // ----------------------------------------------------------------------------
+      // ----------------------------------------------------------------
       // |  Q  |  W  |  E  |  R  |  T  | |  Y  |  U   |  I  |  O  |  P  |
       // |  A  |  S  |  D  |  F  |  G  | |  H  |  J   |  K  |  L  |  ;  |
       // |  Z  |  X  |  C  |  V  |  B  | |  N  |  M   |  ,  |  .  |  /  |
-      //       | GUI | LWR | ADJ | SPC | | SPC | ENT | RSE  | ALT |
+      //       | TAB | LWR | SPC | RSE | | ESC | RET | RSE  | BSPC|
       bindings = <
-        &kp Q    &kp W        &kp E        &kp R         &kp T          &kp Y     &kp U        &kp I        &kp O        &kp P
-        &kp A    &mt LSHIFT S &mt LSHIFT D &mt LSHIFT F  &kp G          &kp H     &mt LSHIFT J &mt LSHIFT K &mt LSHIFT L &kp SEMI
-        &kp Z    &kp X        &kp C        &kp V         &kp B          &kp N     &kp M        &kp COMMA    &kp DOT      &kp FSLH
-        /*     */&kp LGUI     &mo 1        &mo 3         &kp SPACE      &kp SPACE &kp RET      &mo 2        &kp RALT
+        &kp Q        &kp W       &kp E      &kp R      &kp T       &kp Y   &kp U      &kp I      &kp O       &kp P
+        &mt LSHIFT A &mt LCTRL S &mt LALT D &mt LGUI F &kp G       &kp H   &mt RGUI J &mt RALT K &mt RCTRL L &mt RSHIFT SEMI
+        &kp Z        &kp X       &kp C      &kp V      &kp B       &kp N   &kp M      &kp COMMA  &kp DOT     &kp FSLH
+        /*         */&mo 1       &mo 2      &kp SPACE  &kp TAB     &kp ESC &kp RET    &mo 2      &bspc_del
       >;
     };
     lower_layer {
       display-name = "Lower Layer";
-      // FULL LAYOUT - USB MODE
-      // ---------------------------------------------------------------------------
+      // ---------------------------------------------------------------
       // |  1  |  2  |  3  |  4  |  5  | |  6  |  7  |  8  |  9  |  0  |
       // |     |     |     |     |     | | LFT | DWN |  UP | RGT |     |
       // |     |     |     |     |     | |     |     |     |     |     |
-      //       | GUI |     |     | SPC | | ENT |     |     | ALT |
+      //       |     |     |     |     | |     |     |     |     |
       bindings = <
         &kp N1   &kp N2   &kp N3    &kp N4    &kp N5         &kp N6   &kp N7   &kp N8 &kp N9    &kp N0
         &trans   &trans   &trans    &trans    &trans         &kp LEFT &kp DOWN &kp UP &kp RIGHT &trans
         &trans   &trans   &trans    &trans    &trans         &trans   &trans   &trans &trans    &trans
-        /*     */&kp LGUI &trans    &trans    &kp SPACE      &kp RET  &trans   &trans &kp RALT
+        /*     */&trans   &trans    &trans    &trans         &trans   &trans   &trans &trans
       >;
     };
 
     raise_layer {
       display-name = "Raise Layer";
-      // FULL LAYOUT - USB MODE
-      // ---------------------------------------------------------------------------
+      // ---------------------------------------------------------------
       // |  !  |  @  |  #  |  $  |  %  | |  ^  |  &  |  *  |  (  |  )  |
       // |     |     |     |     |     | |  -  |  =  |  [  |  ]  |  \  |
       // |     |     |     |     |     | |  _  |  +  |  {  |  }  | "|" |
@@ -81,23 +78,7 @@
         &kp EXCL &kp AT   &kp HASH  &kp DLLR  &kp PRCNT &kp CARET &kp AMPS  &kp ASTRK &kp LPAR &kp RPAR
         &trans   &trans   &trans    &trans    &trans    &kp MINUS &kp EQUAL &kp LBKT  &kp RBKT &kp BSLH
         &trans   &trans   &trans    &trans    &trans    &kp UNDER &kp PLUS  &kp LBRC  &kp RBRC &kp PIPE
-        /*     */&kp LGUI &trans    &mo 3     &kp SPACE           &kp RET   &trans    &mo 3    &kp RALT
-      >;
-    };
-
-    adjust_layer {
-      display-name = "Adjust Layer";
-      // FULL LAYOUT - USB MODE (no BT controls needed)
-      // ---------------------------------------------------------------------------
-      // |     |     |     |     |     | |     |     |     |     |     |
-      // |     |     |     |     |     | |     |     |     |     |     |
-      // |     |     |     |     |     | |     |     |     |     |     |
-      //       |     |     |     |     | |     |     |     |     |
-      bindings = <
-        &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans
-        &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans
-        &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans
-        /*   */&trans &trans &trans          &trans &trans &trans
+        /*     */&trans   &trans    &trans    &trans    &trans    &trans    &trans    &trans
       >;
     };
   };
