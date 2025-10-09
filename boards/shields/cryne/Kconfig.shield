@@ -1,3 +1,9 @@
-# No whitespace after the comma or in your keyboard name!
+config SHIELD_CRYNE_LEFT
+    def_bool $(shields_list_contains,cryne_left)
+
+config SHIELD_CRYNE_RIGHT
+    def_bool $(shields_list_contains,cryne_right)
+
 config SHIELD_CRYNE
-    def_bool $(shields_list_contains,cryne)
+    def_bool $(shields_list_contains,cryne_left) || $(shields_list_contains,cryne_right)
+    select ZMK_SPLIT
