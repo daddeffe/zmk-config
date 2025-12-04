@@ -1,7 +1,7 @@
 #include "cryne.dtsi" // The shared dtsi file is included in the overlay
 
 &default_transform {
-  col-offset = <5>;  // Right side uses columns 5-9
+  col-offset = <7>;  // Right side uses columns 7-13 (5 main + 2 thumb)
 };
 
 &split_peripheral {
@@ -9,19 +9,24 @@
 };
 
 // Label of the kscan node in the dtsi
+// Based on Ergogen canonical.yaml pin mapping (same as left for reversible PCB)
 &kscan0 {
     row-gpios
-        = <&pro_micro 5 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-        , <&pro_micro 21 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-        , <&pro_micro 14 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-        , <&pro_micro 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+        // Same pin mapping as left side (reversible PCB)
+        = <&pro_micro 9  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>   // row_bottom
+        , <&pro_micro 8  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>   // row_home
+        , <&pro_micro 7  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>   // row_top
+        , <&pro_micro 10 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>   // row_thumb
         ;
 
     col-gpios
-        = <&pro_micro 7 GPIO_ACTIVE_HIGH>
-        , <&pro_micro 15 GPIO_ACTIVE_HIGH>
-        , <&pro_micro 19 GPIO_ACTIVE_HIGH>
-        , <&pro_micro 20 GPIO_ACTIVE_HIGH>
-        , <&pro_micro 18 GPIO_ACTIVE_HIGH>
+        // Same pin mapping as left side (reversible PCB)
+        = <&pro_micro 4 GPIO_ACTIVE_HIGH>    // col_pinky
+        , <&pro_micro 3 GPIO_ACTIVE_HIGH>    // col_ring
+        , <&pro_micro 2 GPIO_ACTIVE_HIGH>    // col_middle
+        , <&pro_micro 0 GPIO_ACTIVE_HIGH>    // col_index
+        , <&pro_micro 1 GPIO_ACTIVE_HIGH>    // col_inner
+        , <&pro_micro 5 GPIO_ACTIVE_HIGH>    // col_near_thumb
+        , <&pro_micro 6 GPIO_ACTIVE_HIGH>    // col_home_thumb
         ;
 };

@@ -169,61 +169,61 @@
 
     default_layer {
       display-name = "Default Layer";
-      // ----------------------------------------------------------------
-      // |  Q  |  W  |  E  |  R  |  T  | |  Y  |  U  |  I  |  O  |  P  |
-      // |  A  | S/⇧ | D/⎈ | F/⊞ | G/⎇ | | H/⎇ | J/⊞ | K/⎈ | L/⇧ |  ;  |
-      // |  Z  |  X  |  C  |  V  |  B  | |  N  |  M  |  ,  |  .  |  /  |
-      //       | LWR | RSE | SPC | TAB | | ESC | RET | LWR | BSPC|
+      // -----------------------------------------------------------------
+      // |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U  |  I  |  O  |  P  |
+      // |  A  | S/⇧ | D/⎈ | F/⊞ | G/⎇ |   | H/⎇ | J/⊞ | K/⎈ | L/⇧ |  ;  |
+      // |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M  |  ,  |  .  |  /  |
+      //             | SPC | TAB |   | ESC | RET |
       bindings = <
         &kp Q &kp W       &kp E      &kp R     &kp T      &kp Y      &kp U      &kp I       &kp O        &kp P
         &kp A &td_shift_s &td_ctrl_d &td_gui_f &td_alt_g  &mt RALT H &mt RGUI J &mt RCTRL K &mt RSHIFT L &kp SEMI
         &kp Z &kp X       &kp C      &kp V     &kp B      &kp N      &kp M      &kp COMMA   &kp DOT      &kp FSLH
-        /*  */&td_layer1  &td_layer2 &kp SPACE &kp TAB    &kp ESC    &kp RET    &td_layer1  &bspc_del
+                          &kp SPACE  &td_layer1                      &td_layer2 &bspc_del
       >;
     };
 
     lower_layer {
       display-name = "Lower Layer";
-      // ---------------------------------------------------------------
-      // |  1  |  2  |  3  |  4  |  5  | |  6   |  7   |  8   |  9   |  0  |
-      // |     |     |     |     |     | | ←/HM | ↓/PD | ↑/PU | →/EN |     |
-      // |     |     |     |     |     | |      |      |      |      |     |
-      //       |     |     | MOU |     | | TO0  |      |      |      |
+      // -----------------------------------------------------------------
+      // |  1  |  2  |  3  |  4  |  5  |   |  6   |  7   |  8   |  9   |  0  |
+      // |     |     |     |     |     |   | ←/HM | ↓/PD | ↑/PU | →/EN |     |
+      // |     |     |     |     |     |   |      |      |      |      |     |
+      //             | MOU |     |   | TO0  |      |
       bindings = <
         &kp N1 &kp N2 &kp N3 &kp N4     &kp N5    &kp N6      &kp N7       &kp N8     &kp N9     &kp N0
         &trans &trans &trans &trans     &trans    &right_home &down_page_d &up_page_u &right_end &trans
         &trans &trans &trans &trans     &trans    &trans      &trans       &trans     &trans     &trans
-        /*   */&trans &trans &td_layer3 &trans    &to 0       &trans       &trans     &trans
+                      &td_layer3 &trans                       &to 0        &trans
       >;
     };
 
     raise_layer {
       display-name = "Raise Layer";
-      // ---------------------------------------------------------------
-      // |  !  |  @  |  #  |  $  |  %  | |  ^  |  &  |  *  |  (  |  )  |
-      // |     |     |     |     |     | |  -  |  =  |  [  |  ]  |  '  |
-      // |     |     |     |     |     | |     |     |     |     |  \  |
-      //       |     |     | MOU |     | | TO0 |     |     |     |
+      // -----------------------------------------------------------------
+      // |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  |
+      // |     |     |     |     |     |   |  -  |  =  |  [  |  ]  |  '  |
+      // |     |     |     |     |     |   |     |     |     |     |  \  |
+      //             | MOU |     |   | TO0 |     |
       bindings = <
         &kp EXCL &kp AT &kp HASH &kp DLLR   &kp PRCNT   &kp CARET &kp AMPS  &kp ASTRK &kp LPAR &kp RPAR
         &trans   &trans &trans   &trans     &trans      &kp MINUS &kp EQUAL &kp LBKT  &kp RBKT &kp APOS
         &trans   &trans &trans   &trans     &trans      &trans    &trans    &trans    &trans   &kp BSLH
-        /*     */&trans &trans   &td_layer3 &trans      &to 0     &trans    &trans    &trans
+                        &td_layer3 &trans                         &to 0     &trans
       >;
     };
 
     mouse_layer {
       display-name = "Mouse Layer";
-      // ---------------------------------------------------------------
-      // |     |     |     |     |     | |     |     |     |     |     |
-      // |     |     |     |     |     | | MS← | MS↓ | MS↑ | MS→ |     |
-      // |     |     |     |     |     | | MB1 | MB2 | MB3 |     |     |
-      //       |     |     |     |     | | TO0 |     |     |     |
+      // -----------------------------------------------------------------
+      // |     |     |     |     |     |   |     |     |     |     |     |
+      // |     |     |     |     |     |   | MS← | MS↓ | MS↑ | MS→ |     |
+      // |     |     |     |     |     |   | MB1 | MB2 | MB3 |     |     |
+      //             |     |     |   | TO0 |     |
       bindings = <
         &trans &trans &trans &trans &trans    &trans   &trans   &trans   &trans   &trans
         &trans &trans &trans &trans &trans    &mouse_h &mouse_j &mouse_k &mouse_l &trans
         &trans &trans &trans &trans &trans    &mkp MB1 &mkp MB2 &mkp MB3 &trans   &trans
-        /*   */&trans &trans &trans &trans    &to 0    &trans   &trans   &trans
+                      &trans &trans                     &to 0    &trans
       >;
     };
   };
