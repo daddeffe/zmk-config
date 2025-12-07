@@ -254,6 +254,15 @@
       require-prior-idle-ms = <100>;
       layers = <0>;
     };
+
+    // Bottom row combo for ZMK Studio/Editor unlock
+    combo_zmk_studio {
+      timeout-ms = <50>;
+      key-positions = <20 21>; // Z + X
+      bindings = <&bootloader>;
+      require-prior-idle-ms = <100>;
+      layers = <0>;
+    };
   };
 
   keymap {
