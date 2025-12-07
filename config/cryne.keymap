@@ -49,6 +49,32 @@
       mods = <(MOD_LSFT|MOD_RSFT)>;
     };
 
+    // Combo mod-morphs for arrow keys with SPACE modifier
+    combo_left_ins: combo_left_insert {
+      compatible = "zmk,behavior-mod-morph";
+      #binding-cells = <0>;
+      bindings = <&kp LEFT>, <&kp INS>;
+      mods = <(MOD_LGUI|MOD_RGUI)>;
+    };
+    combo_down_pgdn: combo_down_page_down {
+      compatible = "zmk,behavior-mod-morph";
+      #binding-cells = <0>;
+      bindings = <&kp DOWN>, <&kp PAGE_DOWN>;
+      mods = <(MOD_LGUI|MOD_RGUI)>;
+    };
+    combo_up_pgup: combo_up_page_up {
+      compatible = "zmk,behavior-mod-morph";
+      #binding-cells = <0>;
+      bindings = <&kp UP>, <&kp PAGE_UP>;
+      mods = <(MOD_LGUI|MOD_RGUI)>;
+    };
+    combo_right_end: combo_right_end_key {
+      compatible = "zmk,behavior-mod-morph";
+      #binding-cells = <0>;
+      bindings = <&kp RIGHT>, <&kp END>;
+      mods = <(MOD_LGUI|MOD_RGUI)>;
+    };
+
     mouse_h: mouse_left_scroll {
       compatible = "zmk,behavior-mod-morph";
       #binding-cells = <0>;
@@ -101,7 +127,7 @@
         tapping-term-ms = <280>;
         quick-tap-ms = <175>;
         bindings = <&kp>, <&kp>;
-        //hold-trigger-key-positions = < ... >; // List of keys on the right side of the keyboard
+        hold-trigger-key-positions = <6 7 8 9 10 11 18 19 20 21 22 23 30 31 32 33 34 35 39 40 41>; // Right side keys + right thumb keys
         hold-trigger-on-release;
     };
     hmr: home_row_mod_right {
@@ -112,7 +138,7 @@
         tapping-term-ms = <280>;
         quick-tap-ms = <175>;
         bindings = <&kp>, <&kp>;
-        //hold-trigger-key-positions = < ... >; // List of keys on the left side of the keyboard
+        hold-trigger-key-positions = <0 1 2 3 4 5 12 13 14 15 16 17 24 25 26 27 28 29 36 37 38>; // Left side keys + left thumb keys
         hold-trigger-on-release;
     };
 
@@ -138,32 +164,98 @@
       tapping-term-ms = <200>;
       bindings = <&kt>, <&sk>;
     };
+  };
 
-    td_shift_s: tap_dance_shift_s {
-      compatible = "zmk,behavior-tap-dance";
-      #binding-cells = <0>;
-      tapping-term-ms = <200>;
-      bindings = <&mt LSHIFT S>, <&sk LSHIFT>;
+  combos {
+    compatible = "zmk,combos";
+    
+    // Arrow key combos on home row (H J K L)
+    // Using require-prior-idle-ms to avoid accidental triggers during typing
+    combo_left {
+      timeout-ms = <50>;
+      key-positions = <31>; // H key
+      bindings = <&combo_left_ins>;
+      require-prior-idle-ms = <100>;
+      layers = <0>;
     };
-    td_ctrl_d: tap_dance_ctrl_d {
-      compatible = "zmk,behavior-tap-dance";
-      #binding-cells = <0>;
-      tapping-term-ms = <200>;
-      bindings = <&mt LCTRL D>, <&sk LCTRL>;
+    combo_down {
+      timeout-ms = <50>;
+      key-positions = <32>; // J key
+      bindings = <&combo_down_pgdn>;
+      require-prior-idle-ms = <100>;
+      layers = <0>;
     };
-    td_gui_f: tap_dance_gui_f {
-      compatible = "zmk,behavior-tap-dance";
-      #binding-cells = <0>;
-      tapping-term-ms = <200>;
-      bindings = <&mt LGUI F>, <&sk LGUI>;
+    combo_up {
+      timeout-ms = <50>;
+      key-positions = <33>; // K key
+      bindings = <&combo_up_pgup>;
+      require-prior-idle-ms = <100>;
+      layers = <0>;
     };
-    td_alt_g: tap_dance_alt_g {
-      compatible = "zmk,behavior-tap-dance";
-      #binding-cells = <0>;
-      tapping-term-ms = <200>;
-      bindings = <&mt LALT G>, <&sk LALT>;
+    combo_right {
+      timeout-ms = <50>;
+      key-positions = <34>; // L key
+      bindings = <&combo_right_end>;
+      require-prior-idle-ms = <100>;
+      layers = <0>;
+    };
+
+    // Additional combo: H+J for HOME
+    combo_home {
+      timeout-ms = <50>;
+      key-positions = <31 32>; // H + J
+      bindings = <&kp HOME>;
+      require-prior-idle-ms = <100>;
+      layers = <0>;
+    };
+    // Additional combo: K+L for END
+    combo_end {
+      timeout-ms = <50>;
+      key-positions = <33 34>; // K + L
+      bindings = <&kp END>;
+      require-prior-idle-ms = <100>;
+      layers = <0>;
+    };
+    // Additional combo: J+K for Page Down + Page Up shortcut
+    combo_pgdn {
+      timeout-ms = <50>;
+      key-positions = <32 33>; // J + K
+      bindings = <&kp PAGE_DOWN>;
+      require-prior-idle-ms = <100>;
+      layers = <0>;
+    };
+
+    // Top row combos for common keys
+    combo_insert {
+      timeout-ms = <50>;
+      key-positions = <7 8>; // U + I
+      bindings = <&kp INS>;
+      require-prior-idle-ms = <100>;
+      layers = <0>;
+    };
+    combo_delete {
+      timeout-ms = <50>;
+      key-positions = <8 9>; // I + O
+      bindings = <&kp DELETE>;
+      require-prior-idle-ms = <100>;
+      layers = <0>;
+    };
+    combo_tab {
+      timeout-ms = <50>;
+      key-positions = <1 2>; // W + E
+      bindings = <&kp TAB>;
+      require-prior-idle-ms = <100>;
+      layers = <0>;
+    };
+    combo_tilde {
+      timeout-ms = <50>;
+      key-positions = <2 3>; // E + R
+      bindings = <&kp TILDE>;
+      require-prior-idle-ms = <100>;
+      layers = <0>;
     };
   };
+
   keymap {
     compatible = "zmk,keymap";
 
@@ -175,10 +267,10 @@
       // |  Z  |  X  |  C  |  V  |  B  | |  N  |  M  |  ,  |  .  |  /  |
       //       | LWR | RSE | SPC | TAB | | ESC | RET | LWR | BSPC|
       bindings = <
-        &kp Q &kp W       &kp E      &kp R     &kp T      &kp Y      &kp U      &kp I       &kp O        &kp P
-        &kp A &td_shift_s &td_ctrl_d &td_gui_f &td_alt_g  &mt RALT H &mt RGUI J &mt RCTRL K &mt RSHIFT L &kp SEMI
-        &kp Z &kp X       &kp C      &kp V     &kp B      &kp N      &kp M      &kp COMMA   &kp DOT      &kp FSLH
-        /*  */&td_layer1  &td_layer2 &kp SPACE &kp TAB    &kp ESC    &kp RET    &td_layer1  &bspc_del
+        &kp Q       &kp W           &kp E           &kp R           &kp T           &kp Y           &kp U           &kp I           &kp O            &kp P
+        &kp A       &hml LSHIFT S   &hml LCTRL D    &hml LGUI F     &hml LALT G     &hmr RALT H     &hmr RGUI J     &hmr RCTRL K    &hmr RSHIFT L    &kp SEMI
+        &kp Z       &kp X           &kp C           &kp V           &kp B           &kp N           &kp M           &kp COMMA       &kp DOT          &kp FSLH
+        /*       */ &td_layer1      &td_layer2      &kp SPACE       &kp TAB         &kp ESC         &kp RET         &td_layer1      &bspc_del
       >;
     };
 
