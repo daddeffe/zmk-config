@@ -127,7 +127,7 @@
         tapping-term-ms = <280>;
         quick-tap-ms = <175>;
         bindings = <&kp>, <&kp>;
-        hold-trigger-key-positions = <6 7 8 9 10 11 18 19 20 21 22 23 30 31 32 33 34 35 39 40 41>; // Right side keys + right thumb keys
+        hold-trigger-key-positions = <5 6 7 8 9 15 16 17 18 19 25 26 27 28 29 34 35 36 37>; // Right side keys + right thumb keys
         hold-trigger-on-release;
     };
     hmr: home_row_mod_right {
@@ -138,7 +138,7 @@
         tapping-term-ms = <280>;
         quick-tap-ms = <175>;
         bindings = <&kp>, <&kp>;
-        hold-trigger-key-positions = <0 1 2 3 4 5 12 13 14 15 16 17 24 25 26 27 28 29 36 37 38>; // Left side keys + left thumb keys
+        hold-trigger-key-positions = <0 1 2 3 4 10 11 12 13 14 20 21 22 23 24 30 31 32 33>; // Left side keys + left thumb keys
         hold-trigger-on-release;
     };
 
@@ -169,41 +169,10 @@
   combos {
     compatible = "zmk,combos";
     
-    // Arrow key combos on home row (H J K L)
-    // Using require-prior-idle-ms to avoid accidental triggers during typing
-    combo_left {
-      timeout-ms = <50>;
-      key-positions = <31>; // H key
-      bindings = <&combo_left_ins>;
-      require-prior-idle-ms = <100>;
-      layers = <0>;
-    };
-    combo_down {
-      timeout-ms = <50>;
-      key-positions = <32>; // J key
-      bindings = <&combo_down_pgdn>;
-      require-prior-idle-ms = <100>;
-      layers = <0>;
-    };
-    combo_up {
-      timeout-ms = <50>;
-      key-positions = <33>; // K key
-      bindings = <&combo_up_pgup>;
-      require-prior-idle-ms = <100>;
-      layers = <0>;
-    };
-    combo_right {
-      timeout-ms = <50>;
-      key-positions = <34>; // L key
-      bindings = <&combo_right_end>;
-      require-prior-idle-ms = <100>;
-      layers = <0>;
-    };
-
     // Additional combo: H+J for HOME
     combo_home {
       timeout-ms = <50>;
-      key-positions = <31 32>; // H + J
+      key-positions = <15 16>; // H + J
       bindings = <&kp HOME>;
       require-prior-idle-ms = <100>;
       layers = <0>;
@@ -211,15 +180,15 @@
     // Additional combo: K+L for END
     combo_end {
       timeout-ms = <50>;
-      key-positions = <33 34>; // K + L
+      key-positions = <17 18>; // K + L
       bindings = <&kp END>;
       require-prior-idle-ms = <100>;
       layers = <0>;
     };
-    // Additional combo: J+K for Page Down + Page Up shortcut
+    // Additional combo: J+K for Page Down
     combo_pgdn {
       timeout-ms = <50>;
-      key-positions = <32 33>; // J + K
+      key-positions = <16 17>; // J + K
       bindings = <&kp PAGE_DOWN>;
       require-prior-idle-ms = <100>;
       layers = <0>;
@@ -228,14 +197,14 @@
     // Top row combos for common keys
     combo_insert {
       timeout-ms = <50>;
-      key-positions = <7 8>; // U + I
+      key-positions = <6 7>; // U + I
       bindings = <&kp INS>;
       require-prior-idle-ms = <100>;
       layers = <0>;
     };
     combo_delete {
       timeout-ms = <50>;
-      key-positions = <8 9>; // I + O
+      key-positions = <7 8>; // I + O
       bindings = <&kp DELETE>;
       require-prior-idle-ms = <100>;
       layers = <0>;
