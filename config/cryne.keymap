@@ -24,57 +24,6 @@
       // Keeps mod dosn't remove the mod after the morph
       // keep-mods = <(MOD_RSFT)>;
     };
-    right_home: right_hm {
-      compatible = "zmk,behavior-mod-morph";
-      #binding-cells = <0>;
-      bindings = <&kp LEFT>, <&kp HOME>;
-      mods = <(MOD_LSFT|MOD_RSFT)>;
-    };
-    down_page_d: down_pgd {
-      compatible = "zmk,behavior-mod-morph";
-      #binding-cells = <0>;
-      bindings = <&kp DOWN>, <&kp PAGE_DOWN>;
-      mods = <(MOD_LSFT|MOD_RSFT)>;
-    };
-    up_page_u: up_pgu {
-      compatible = "zmk,behavior-mod-morph";
-      #binding-cells = <0>;
-      bindings = <&kp UP>, <&kp PAGE_UP>;
-      mods = <(MOD_LSFT|MOD_RSFT)>;
-    };
-    right_end: right_nd {
-      compatible = "zmk,behavior-mod-morph";
-      #binding-cells = <0>;
-      bindings = <&kp RIGHT>, <&kp END>;
-      mods = <(MOD_LSFT|MOD_RSFT)>;
-    };
-
-    // Combo mod-morphs for arrow keys with SPACE modifier
-    combo_left_ins: combo_left_insert {
-      compatible = "zmk,behavior-mod-morph";
-      #binding-cells = <0>;
-      bindings = <&kp LEFT>, <&kp INS>;
-      mods = <(MOD_LGUI|MOD_RGUI)>;
-    };
-    combo_down_pgdn: combo_down_page_down {
-      compatible = "zmk,behavior-mod-morph";
-      #binding-cells = <0>;
-      bindings = <&kp DOWN>, <&kp PAGE_DOWN>;
-      mods = <(MOD_LGUI|MOD_RGUI)>;
-    };
-    combo_up_pgup: combo_up_page_up {
-      compatible = "zmk,behavior-mod-morph";
-      #binding-cells = <0>;
-      bindings = <&kp UP>, <&kp PAGE_UP>;
-      mods = <(MOD_LGUI|MOD_RGUI)>;
-    };
-    combo_right_end: combo_right_end_key {
-      compatible = "zmk,behavior-mod-morph";
-      #binding-cells = <0>;
-      bindings = <&kp RIGHT>, <&kp END>;
-      mods = <(MOD_LGUI|MOD_RGUI)>;
-    };
-
     mouse_h: mouse_left_scroll {
       compatible = "zmk,behavior-mod-morph";
       #binding-cells = <0>;
@@ -168,37 +117,71 @@
 
   combos {
     compatible = "zmk,combos";
-    
-    // Additional combo: H+J for HOME
-    combo_home {
+    // Home row combos (Vim style arrows): H-J-K-L
+    combo_left {
       timeout-ms = <50>;
       key-positions = <15 16>; // H + J
+      bindings = <&kp LEFT>;
+      require-prior-idle-ms = <100>;
+      layers = <0>;
+    };
+    combo_down {
+      timeout-ms = <50>;
+      key-positions = <16 17>; // J + K
+      bindings = <&kp DOWN>;
+      require-prior-idle-ms = <100>;
+      layers = <0>;
+    };
+    combo_up {
+      timeout-ms = <50>;
+      key-positions = <17 18>; // K + L
+      bindings = <&kp UP>;
+      require-prior-idle-ms = <100>;
+      layers = <0>;
+    };
+    combo_right {
+      timeout-ms = <50>;
+      key-positions = <18 19>; // L + ;
+      bindings = <&kp RIGHT>;
+      require-prior-idle-ms = <100>;
+      layers = <0>;
+    };
+
+    // Bottom row combos (navigation): N-M-,-. 
+    combo_home {
+      timeout-ms = <50>;
+      key-positions = <25 26>; // N + M
       bindings = <&kp HOME>;
       require-prior-idle-ms = <100>;
       layers = <0>;
     };
-    // Additional combo: K+L for END
-    combo_end {
+    combo_pgdn {
       timeout-ms = <50>;
-      key-positions = <17 18>; // K + L
-      bindings = <&kp END>;
+      key-positions = <26 27>; // M + ,
+      bindings = <&kp PAGE_DOWN>;
       require-prior-idle-ms = <100>;
       layers = <0>;
     };
-    // Additional combo: J+K for Page Down
-    combo_pgdn {
+    combo_pgup {
       timeout-ms = <50>;
-      key-positions = <16 17>; // J + K
-      bindings = <&kp PAGE_DOWN>;
+      key-positions = <27 28>; // , + .
+      bindings = <&kp PAGE_UP>;
+      require-prior-idle-ms = <100>;
+      layers = <0>;
+    };
+    combo_end {
+      timeout-ms = <50>;
+      key-positions = <28 29>; // . + /
+      bindings = <&kp END>;
       require-prior-idle-ms = <100>;
       layers = <0>;
     };
 
     // Top row combos for common keys
-    combo_insert {
+    combo_backspace {
       timeout-ms = <50>;
       key-positions = <6 7>; // U + I
-      bindings = <&kp INS>;
+      bindings = <&kp BACKSPACE>;
       require-prior-idle-ms = <100>;
       layers = <0>;
     };
@@ -228,7 +211,7 @@
     combo_zmk_studio {
       timeout-ms = <50>;
       key-positions = <20 21>; // Z + X
-      bindings = <&bootloader>;
+      bindings = <&studio_unlock>;
       require-prior-idle-ms = <100>;
       layers = <0>;
     };
@@ -255,15 +238,15 @@
     lower_layer {
       display-name = "Lower Layer";
       // ---------------------------------------------------------------
-      // |  1  |  2  |  3  |  4  |  5  | |  6   |  7   |  8   |  9   |  0  |
-      // |     |     |     |     |     | | ←/HM | ↓/PD | ↑/PU | →/EN |     |
-      // |     |     |     |     |     | |      |      |      |      |     |
-      //       |     |     | MOU |     | | TO0  |      |      |      |
+      // |  1  |  2  |  3  |  4  |  5  | |  6  |  7  |  8  |  9  |  0  |
+      // |     |     |     |     |     | |  ←  |  ↓  |  ↑  |  →  |     |
+      // |     |     |     |     |     | |     |     |     |     |     |
+      //       |     |     | MOU |     | | TO0 |     |     |     |
       bindings = <
-        &kp N1 &kp N2 &kp N3 &kp N4     &kp N5    &kp N6      &kp N7       &kp N8     &kp N9     &kp N0
-        &trans &trans &trans &trans     &trans    &right_home &down_page_d &up_page_u &right_end &trans
-        &trans &trans &trans &trans     &trans    &trans      &trans       &trans     &trans     &trans
-        /*   */&trans &trans &td_layer3 &trans    &to 0       &trans       &trans     &trans
+        &kp N1 &kp N2 &kp N3 &kp N4     &kp N5    &kp N6    &kp N7   &kp N8 &kp N9    &kp N0
+        &trans &trans &trans &trans     &trans    &kp LEFT  &kp DOWN &kp UP &kp RIGHT &trans
+        &trans &trans &trans &trans     &trans    &trans    &trans   &trans &trans    &trans
+        /*   */&trans &trans &td_layer3 &trans    &to 0     &trans   &trans &trans
       >;
     };
 
