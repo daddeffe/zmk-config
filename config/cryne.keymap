@@ -209,11 +209,31 @@
 
     // Bottom row combo for ZMK Studio/Editor unlock
     combo_zmk_studio {
-      timeout-ms = <50>;
-      key-positions = <20 21>; // Z + X
+      timeout-ms = <100>;
+      key-positions = <20 21>; // Z + X (left side)
       bindings = <&studio_unlock>;
-      require-prior-idle-ms = <100>;
-      layers = <0>;
+    };
+
+    // Bootloader reset combos (for flashing firmware)
+    // Left side: Q + W
+    combo_bootloader_left {
+      timeout-ms = <100>;
+      key-positions = <0 1>; // Q + W (left side)
+      bindings = <&bootloader>;
+    };
+    // Right side: O + P
+    combo_bootloader_right {
+      timeout-ms = <100>;
+      key-positions = <8 9>; // O + P (right side)
+      bindings = <&bootloader>;
+    };
+    
+    // Alternative: Reset both sides with extreme corners
+    // Top left corner + Top right corner (Q + P)
+    combo_bootloader_both {
+      timeout-ms = <100>;
+      key-positions = <0 9>; // Q + P (both extreme corners)
+      bindings = <&bootloader>;
     };
   };
 

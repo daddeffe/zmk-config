@@ -1,6 +1,6 @@
 #include "cryne.dtsi" // The shared dtsi file is included in the overlay
 
-&default_transform {
+&cryne_transform {
   col-offset = <5>;  // Right side uses columns 5-9
 };
 
