@@ -19,10 +19,7 @@
 #
 ---
 include:
-  - board: nice_nano_v2
+  - board: nice_nano
     shield: cryne_left
-  - board: nice_nano_v2
+  - board: nice_nano
     shield: cryne_right
-  - board: nice_nano_v2
-    shield: settings_reset
-    artifact-name: settings_reset
