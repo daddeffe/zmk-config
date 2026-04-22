@@ -3,4 +3,42 @@ on: [push, pull_request, workflow_dispatch]
 
 jobs:
   build:
-    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@v0.3
+    runs-on: ubuntu-latest
+    container:
+      image: zmkfirmware/zmk-build-arm:stable
+    name: Build ZMK
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: West Init
+        run: west init -l config
+
+      - name: West Update
+        run: west update --fetch-opt=--filter=tree:0
+
+      - name: West Zephyr export
+        run: west zephyr-export
+
+      - name: Build left side
+        run: |
+          mkdir -p firmware
+          west build -s zmk/app -d build/left -b nice_nano -- \
+            -DSHIELD=cryne_left \
+            -DZMK_CONFIG=$PWD/config \
+            -DZMK_EXTRA_MODULES=$PWD
+          cp build/left/zephyr/zmk.uf2 firmware/cryne_left.uf2
+
+      - name: Build right side
+        run: |
+          west build -s zmk/app -d build/right -b nice_nano -- \
+            -DSHIELD=cryne_right \
+            -DZMK_CONFIG=$PWD/config \
+            -DZMK_EXTRA_MODULES=$PWD
+          cp build/right/zephyr/zmk.uf2 firmware/cryne_right.uf2
+
+      - name: Archive firmware
+        uses: actions/upload-artifact@v4
+        with:
+          name: firmware
+          path: firmware/*.uf2
