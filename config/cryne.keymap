@@ -347,14 +347,14 @@
             // ---------------------------------------------------------------
             // | BT1 | BT2 | BT3 | BT4 | BT5 | |     |     |     |     | BOOT|
             // | CLR | OUT | VDN | VUP | MUT | | MS← | MS↓ | MS↑ | MS→ | SOFF|
-            // | PRV | PLY | NXT | BDN | BUP | | MB1 | MB2 | MB3 |     | STUD|
+            // | BDN | BUP | PRV | PLY | NXT | | MB1 | MB2 | MB3 |     | STUD|
             //       |     |     |     |     | | TO0 |     |     |     |
 
             bindings = <
-&bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4  /**/ &trans   &trans   &trans   &trans   &bootloader
-&bt BT_CLR   &out OUT_TOG &kp C_VOL_DN &kp C_VOL_UP &kp C_MUTE    /**/ &mouse_h &mouse_j &mouse_k &mouse_l &soft_off
-&kp C_PREV   &kp C_PP     &kp C_NEXT   &kp C_BRI_DN &kp C_BRI_UP  /**/ &mkp MB1 &mkp MB2 &mkp MB3 &trans   &studio_unlock
-             &trans       &trans       &trans       &trans          /**/ &to 0    &trans   &trans   &trans
+&bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 /**/ &trans   &trans   &trans   &trans   &bootloader
+&bt BT_CLR   &out OUT_TOG &kp C_VOL_DN &kp C_VOL_UP &kp C_MUTE   /**/ &mouse_h &mouse_j &mouse_k &mouse_l &soft_off
+&kp C_BRI_DN &kp C_BRI_UP &kp C_PREV   &kp C_PP     &kp C_NEXT   /**/ &mkp MB1 &mkp MB2 &mkp MB3 &trans   &studio_unlock
+             &trans       &trans       &trans       &trans       /**/ &to 0    &trans   &trans   &trans
             >;
         };
     };
