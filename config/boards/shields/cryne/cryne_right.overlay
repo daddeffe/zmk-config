@@ -1,15 +1,7 @@
 #include "cryne.dtsi"
 
-<<<<<<< Updated upstream
 &cryne_transform {
-  col-offset = <5>;  // Right side uses columns 5-9
-||||||| Stash base
-&default_transform {
-  col-offset = <5>;  // Right side uses columns 5-9
-=======
-&default_transform {
   col-offset = <5>;
->>>>>>> Stashed changes
 };
 
 &split_peripheral {
