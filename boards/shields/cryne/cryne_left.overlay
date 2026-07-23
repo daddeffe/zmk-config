@@ -1,4 +1,4 @@
-#include "cryne.dtsi" // The shared dtsi file is included in the overlay
+#include "cryne.dtsi"
 
 &cryne_transform {
   col-offset = <0>;
@@ -8,20 +8,19 @@
   status = "okay";
 };
 
-// Label of the kscan node in the dtsi
 &kscan0 {
   row-gpios
-    = <&pro_micro 2  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-    , <&pro_micro 3  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-    , <&pro_micro 15 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-    , <&pro_micro 14 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+    = <&gpio0 8 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>   // ROW0 = 008
+    , <&gpio0 22 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // ROW1 = 022
+    , <&gpio1 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>   // ROW2 = 100
+    , <&gpio1 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>   // ROW3 = 106
     ;
 
   col-gpios
-    = <&pro_micro 7 GPIO_ACTIVE_HIGH>
-    , <&pro_micro 4 GPIO_ACTIVE_HIGH>
-    , <&pro_micro 5 GPIO_ACTIVE_HIGH>
-    , <&pro_micro 6 GPIO_ACTIVE_HIGH>
-    , <&pro_micro 18 GPIO_ACTIVE_HIGH>
+    = <&gpio0 17 GPIO_ACTIVE_HIGH>   // COL0 (A) = 017
+    , <&gpio0 24 GPIO_ACTIVE_HIGH>   // COL1 (S) = 024
+    , <&gpio0 20 GPIO_ACTIVE_HIGH>   // COL2 (D) = 020
+    , <&gpio1 4 GPIO_ACTIVE_HIGH>    // COL3 (F) = 104
+    , <&gpio0 6 GPIO_ACTIVE_HIGH>    // COL4 (G) = 006
     ;
 };
